@@ -1,7 +1,10 @@
 .superRadio__wrapper {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
     text-align: center;
     cursor: pointer;
+    padding: 5px;
 }
 
 .superRadio__wrapper:hover .superRadio__span {
@@ -31,8 +34,8 @@
     top: calc(50% - 8px);
     left: calc(50% - 8px);
     position: absolute;
-    height: 10px;
-    width: 10px;
+    height: 16px;
+    width: 16px;
     background-color: #84DCC6;
     border: white 3px solid;
     border-radius: 50%;

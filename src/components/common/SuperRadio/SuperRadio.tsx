@@ -1,4 +1,4 @@
-import { ChangeEvent } from 'react';
+import {ChangeEvent} from 'react';
 import s from './SuperRadio.module.css';
 
 interface IProps extends React.HTMLProps<HTMLInputElement> {

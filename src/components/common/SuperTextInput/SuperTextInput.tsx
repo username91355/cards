@@ -23,6 +23,7 @@ export const SuperTextInput: React.FC<IProps> = props => {
         onEnter,
         className,
         classNameLabel,
+        ...restProps
     } = props;
 
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +43,7 @@ export const SuperTextInput: React.FC<IProps> = props => {
                    type={'text'}
                    onChange={onChangeHandler}
                    onKeyPress={onKeyPressHandler}
+                   {...restProps}
             />
         </div>
     );

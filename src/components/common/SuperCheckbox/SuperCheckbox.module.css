@@ -1,7 +1,10 @@
 .superCheckbox__wrapper {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
     text-align: center;
     cursor: pointer;
+    padding: 5px;
 }
 
 .superCheckbox__wrapper:hover .superCheckbox__span {

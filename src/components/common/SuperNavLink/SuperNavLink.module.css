@@ -1,0 +1,13 @@
+.superNavLink {
+    color: white;
+    text-decoration: none;
+    padding: 2px 5px;
+}
+
+.superNavLink:hover {
+    color: #84DCC6;
+}
+
+.superNavLink_active {
+    color: #84DCC6;
+}

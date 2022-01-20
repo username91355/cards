@@ -13,7 +13,8 @@ export const SuperSelect: React.FC<IProps> = props => {
         childrenArray,
         className,
         onChange,
-        onChangeSelect
+        onChangeSelect,
+        ...restProps
     } = props;
 
     const options = childrenArray.map( (o,i) => <option key={i} className={s.option}>{o}</option>)
@@ -25,7 +26,7 @@ export const SuperSelect: React.FC<IProps> = props => {
 
     return (
         <div className={s.select__wrapper}>
-            <select className={`${s.select} ${className}`} onChange={onChangeHandler}>
+            <select {...restProps} className={`${s.select} ${className}`} onChange={onChangeHandler}>
                 {options}
             </select>
         </div>
