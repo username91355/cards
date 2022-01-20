@@ -22,19 +22,23 @@
     height: 16px;
     width: 16px;
     background-color: white;
-    border-radius: 50%;
+    border-radius: 5px;
 }
 
 .superCheckbox__input_select:before {
-    content: '';
+    content: '\2713';
+    font-weight: 900;
+    color: #222222;
     top: calc(50% - 8px);
     left: calc(50% - 8px);
     position: absolute;
-    height: 10px;
-    width: 10px;
-    background-color: #84DCC6;
-    border: white 3px solid;
-    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border-radius: 5px;
 }
 
 .superCheckbox__span {

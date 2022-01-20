@@ -1,0 +1,46 @@
+.superRadio__wrapper {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+}
+
+.superRadio__wrapper:hover .superRadio__span {
+    color: #84DCC6;
+}
+
+.superRadio__input {
+    appearance: none;
+    position: relative;
+    padding-left: 18px;
+}
+
+.superRadio__input_not_select:before {
+    content: '';
+    top: calc(50% - 8px);
+    left: calc(50% - 8px);
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    background-color: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.superRadio__input_select:before {
+    content: '';
+    top: calc(50% - 8px);
+    left: calc(50% - 8px);
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background-color: #84DCC6;
+    border: white 3px solid;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.superRadio__span {
+    color: white;
+    cursor: pointer;
+    line-height: 16px;
+}

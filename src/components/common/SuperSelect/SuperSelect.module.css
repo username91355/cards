@@ -1,0 +1,9 @@
+.select__wrapper {
+    display: inline-block;
+}
+
+.select {
+    outline: none;
+    padding: 5px;
+    border-radius: 3px;
+}
