@@ -1,0 +1,6 @@
+.login__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #4b4e6d;
+}

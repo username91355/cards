@@ -1,5 +1,5 @@
 import React from 'react';
-import {SuperNavLink} from "../components/common/SuperNavLink/SuperNavLink";
+import {SuperNavLink} from "../common/SuperNavLink/SuperNavLink";
 
 const HeaderCont = () => {
     return (
