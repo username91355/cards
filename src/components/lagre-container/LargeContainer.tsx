@@ -7,7 +7,7 @@ interface IProps {
 
 export const LargeContainer: React.FC<IProps> = ({children}) => {
     return (
-        <div className={s.smallContainer__wrapper}>
+        <div className={s.largeContainer__wrapper}>
             {children}
         </div>
     );

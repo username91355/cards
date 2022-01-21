@@ -1,33 +1,33 @@
-.smallContainer__wrapper {
+.largeContainer__wrapper {
     background-color: #4b4e6d;
     border: #b1e5e8 1px solid;
     border-radius: 10px;
     margin: 1em;
     padding: 1.2em;
     height: 100%;
-    max-width: 1200px;
+    width: 1000px;
 }
 
-@media screen and (max-width: 1440px){
-    .smallContainer__wrapper {
-        max-width: 800px;
+@media screen and (max-width: 1440px) {
+    .largeContainer__wrapper {
+        width: 800px;
     }
 }
 
-@media screen and (max-width: 900px){
-    .smallContainer__wrapper {
-        max-width: 600px;
+@media screen and (max-width: 900px) {
+    .largeContainer__wrapper {
+        width: 600px;
     }
 }
 
-@media screen and (max-width: 720px){
-    .smallContainer__wrapper {
-        max-width: 450px;
+@media screen and (max-width: 720px) {
+    .largeContainer__wrapper {
+        width: 450px;
     }
 }
 
-@media screen and (max-width: 480px){
-    .smallContainer__wrapper {
-        max-width: 340px;
+@media screen and (max-width: 480px) {
+    .largeContainer__wrapper {
+        width: 340px;
     }
 }
