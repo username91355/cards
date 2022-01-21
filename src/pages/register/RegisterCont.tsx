@@ -36,7 +36,7 @@ const RegisterCont: React.FC = () => {
     }
 
     const cancel = () => {
-        navigate('/')
+        navigate('/');
     }
 
     if (loginStatus === STATUS.SUCCESS) return <Navigate to='/login'/>
@@ -45,7 +45,6 @@ const RegisterCont: React.FC = () => {
                   email={email}
                   password={password}
                   confirmPassword={confirmPassword}
-                  loginStatus={STATUS.PENDING}
                   emailChangeHandler={emailChangeHandler}
                   passwordChangeHandler={passwordChangeHandler}
                   passwordConfirmChangeHandler={passwordConfirmChangeHandler}
