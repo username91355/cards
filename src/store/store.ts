@@ -2,9 +2,11 @@ import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk, { ThunkAction } from "redux-thunk";
 import {profileReducer} from "./reducers/profile-reducer";
 import {loginReducer} from "./reducers/login-reducer";
+import {registerReducer} from "./reducers/register-reducer";
 
 const rootReducer = combineReducers({
     login: loginReducer,
+    register: registerReducer,
     profile: profileReducer,
 });
 

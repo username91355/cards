@@ -10,6 +10,10 @@ export const cardsAPI = {
     login(email: string, password: string, rememberMe: boolean) {
         return instance
             .post('/auth/login', {email, password, rememberMe})
-    }
+    },
+
+    register(email: string, password: string) {
+        return instance.post('/auth/register', {email, password})
+    },
 }
 
