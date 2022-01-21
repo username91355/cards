@@ -1,17 +1,16 @@
 import React, {ChangeEvent, useState} from 'react';
-import s from './Login.module.css';
-import {SuperInput} from '../../components/common/SuperInput/SuperInput';
-import {SuperButton} from '../../components/common/SuperButton/SuperButton';
-import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import {TAppState} from "../../store/store";
-import {login} from "../../store/reducers/login-reducer";
-import {SuperCheckbox} from "../../components/common/SuperCheckbox/SuperCheckbox";
+import {useDispatch, useSelector} from 'react-redux';
+import {Navigate} from 'react-router-dom';
+import {TAppState} from '../../store/store';
+import Login from './Login';
+import {login} from '../../store/reducers/login-reducer';
 
 const LoginCont: React.FC = () => {
 
     const dispatch = useDispatch();
     const error = useSelector((state: TAppState) => state.login.error);
+    const isAuth = useSelector((state: TAppState) => state.login.isAuth);
+    const loginStatus = useSelector((state: TAppState) => state.login.loginStatus);
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [rememberMe, setRememberMe] = useState<boolean>(false);
@@ -32,20 +31,18 @@ const LoginCont: React.FC = () => {
         setRememberMe(e.currentTarget.checked)
     }
 
-    return (
-        <div className={s.login__wrapper}>
-            <h2>Welcome</h2>
-            <SuperInput value={email} onChange={emailChangeHandler} type={'email'} label={'Enter your email'}
-                        error={error}/>
-            <SuperInput value={password} onChange={passwordChangeHandler} type={'password'} label={'Enter password'}
-                        error={error}/>
-            <SuperCheckbox onChange={rememberMeChangeHandler} checked={rememberMe} children={'Remember me'}/>
-            <Link to='/password-recovery'>Forgot password</Link>
-            <SuperButton title={'Login'} type={'primary'} onClick={submit}/>
-            <p>Don`t have an account?</p>
-            <Link to='/registration'>Sign up</Link>
-        </div>
-    );
+    if (isAuth) return <Navigate to='/profile'/>
+
+    return <Login error={error}
+                  email={email}
+                  password={password}
+                  rememberMe={rememberMe}
+                  loginStatus={loginStatus}
+                  submit={submit}
+                  emailChangeHandler={emailChangeHandler}
+                  passwordChangeHandler={passwordChangeHandler}
+                  rememberMeChangeHandler={rememberMeChangeHandler}
+    />
 };
 
 export default LoginCont;

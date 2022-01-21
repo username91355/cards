@@ -12,6 +12,11 @@
     letter-spacing: 1px;
 }
 
+.btn:disabled {
+    background-color: #96a2a0;
+    border-color: #96a2a0;
+}
+
 .btn:before {
     content: "";
     background: linear-gradient(90deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .5));

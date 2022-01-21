@@ -8,6 +8,8 @@ const instance = axios.create({
 export const cardsAPI = {
 
     login(email: string, password: string, rememberMe: boolean) {
-        return instance.post('/auth/login', {email, password, rememberMe})
+        return instance
+            .post('/auth/login', {email, password, rememberMe})
     }
 }
+

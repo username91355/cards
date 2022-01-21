@@ -1,8 +1,11 @@
-import {Nullable} from "../../utils/types/types";
-import {ThunkType} from "../store";
-import {cardsAPI} from "../../components/api/api";
+import {Nullable, STATUS, TLoginState} from '../../utils/types/types';
+import {ThunkType} from '../store';
+import {cardsAPI} from '../../components/api/api';
+import {ACTIONS} from '../actions';
 
-const iState = {
+export const loginIState = {
+    isAuth: false as boolean,
+    loginStatus: STATUS.PENDING as STATUS,
     _id: null as Nullable<string>,
     email: null as Nullable<string>,
     name: null as Nullable<string>,
@@ -14,27 +17,40 @@ const iState = {
     verified: null as Nullable<boolean>,
     rememberMe: null as Nullable<boolean>,
     error: null as Nullable<string>
-}
+};
 
-export const loginReducer = (state: any = iState, action: any) => {
+export const loginReducer = (state: TLoginState = loginIState, action: any) => {
     switch (action.type) {
-        case 'SET_DATA':
+        case ACTIONS.SET_USER_DATA:
             return {
                 ...state,
                 ...action.payload
-            }
+            };
+        case ACTIONS.SET_AUTH_STATUS:
+            return {
+                ...state,
+                ...action.payload
+            };
         default:
             return state;
     }
 };
 
-const setUserData = (payload: any) => ({type: 'SET_DATA', payload})
+const setUserData = (payload: any) => ({type: ACTIONS.SET_USER_DATA, payload});
+const setAuthStatus = (isAuth: boolean) => ({type: ACTIONS.SET_USER_DATA, payload: {isAuth}});
+const setLoginStatus = (loginStatus: STATUS) => ({type: ACTIONS.SET_USER_DATA, payload: {loginStatus}});
 
 export const login = (email: string, password: string, rememberMe: boolean): ThunkType => async dispatch => {
     try {
-        const response = await cardsAPI.login(email, password, rememberMe)
-        dispatch(setUserData(response.data))
+        dispatch(setLoginStatus(STATUS.LOADING));
+
+        const response = await cardsAPI.login(email, password, rememberMe);
+
+        dispatch(setUserData(response.data));
+        dispatch(setAuthStatus(true));
+        dispatch(setLoginStatus(STATUS.SUCCESS));
     } catch (err) {
-        console.log(err)
+        dispatch(setLoginStatus(STATUS.ERROR));
+        console.error(err);
     }
 }

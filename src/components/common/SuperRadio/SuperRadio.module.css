@@ -14,7 +14,7 @@
 .superRadio__input {
     appearance: none;
     position: relative;
-    padding-left: 18px;
+    padding-left: 22px;
 }
 
 .superRadio__input_not_select:before {
