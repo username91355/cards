@@ -2,9 +2,9 @@ import React, {ChangeEvent} from 'react';
 import s from "./Login.module.css";
 import {SuperInput} from "../../components/common/SuperInput/SuperInput";
 import {SuperCheckbox} from "../../components/common/SuperCheckbox/SuperCheckbox";
-import {Link} from "react-router-dom";
 import {SuperButton} from "../../components/common/SuperButton/SuperButton";
 import {STATUS} from "../../utils/types/types";
+import {SuperLink} from "../../components/common/SuperLink/SuperLink";
 
 interface IProps {
     error: string | null
@@ -49,13 +49,13 @@ const Login: React.FC<IProps> = props => {
                            onChange={rememberMeChangeHandler}
                            children={'Remember me'}
             />
-            <Link to='/password-recovery'>Forgot password</Link>
+            <SuperLink to='/password-recovery' children={'Forgot password'}/>
             <SuperButton title={'Login'}
                          type={'primary'}
                          onClick={submit}
                          disabled={loginStatus === STATUS.LOADING}/>
             <p>Don`t have an account?</p>
-            <Link to='/registration'>Sign up</Link>
+            <SuperLink to='/registration' children={'Sign up'}/>
         </div>
     );
 };
