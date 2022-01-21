@@ -11,7 +11,7 @@ function App() {
     return (
         <Provider store={store}>
             <BrowserRouter>
-                <div className='app_wrapper'>
+                <div className='app__wrapper'>
                     <HeaderCont/>
                     <AppRoutes/>
                 </div>
