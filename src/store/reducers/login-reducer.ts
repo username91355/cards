@@ -22,10 +22,7 @@ export const loginIState = {
 export const loginReducer = (state: TLoginState = loginIState, action: any) => {
     switch (action.type) {
         case ACTIONS.SET_USER_DATA:
-            return {
-                ...state,
-                ...action.payload
-            };
+        case ACTIONS.SET_LOGIN_ERROR:
         case ACTIONS.SET_AUTH_STATUS:
             return {
                 ...state,
@@ -39,6 +36,7 @@ export const loginReducer = (state: TLoginState = loginIState, action: any) => {
 const setUserData = (payload: any) => ({type: ACTIONS.SET_USER_DATA, payload});
 const setAuthStatus = (isAuth: boolean) => ({type: ACTIONS.SET_USER_DATA, payload: {isAuth}});
 const setLoginStatus = (loginStatus: STATUS) => ({type: ACTIONS.SET_USER_DATA, payload: {loginStatus}});
+export const setLoginError = (error: string | null) => ({type: ACTIONS.SET_LOGIN_ERROR, payload: {error}});
 
 export const login = (email: string, password: string, rememberMe: boolean): ThunkType => async dispatch => {
     try {
@@ -49,8 +47,8 @@ export const login = (email: string, password: string, rememberMe: boolean): Thu
         dispatch(setUserData(response.data));
         dispatch(setAuthStatus(true));
         dispatch(setLoginStatus(STATUS.SUCCESS));
-    } catch (err) {
+    } catch (err: any) {
+        dispatch(setLoginError(err.response ? err.response.data.error : err.message));
         dispatch(setLoginStatus(STATUS.ERROR));
-        console.error(err);
     }
 }

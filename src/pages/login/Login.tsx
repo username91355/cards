@@ -34,28 +34,37 @@ const Login: React.FC<IProps> = props => {
 
     return (
         <div className={s.login__wrapper}>
-            <h2>Welcome</h2>
-            <SuperInput value={email}
-                        onChange={emailChangeHandler}
-                        type={'email'}
-                        label={'Enter your email'}
-                        error={error}/>
-            <SuperInput value={password}
-                        onChange={passwordChangeHandler}
-                        type={'password'}
-                        label={'Enter password'}
-                        error={error}/>
-            <SuperCheckbox checked={rememberMe}
-                           onChange={rememberMeChangeHandler}
-                           children={'Remember me'}
-            />
-            <SuperLink to='/password-recovery' children={'Forgot password'}/>
-            <SuperButton title={'Login'}
-                         type={'primary'}
-                         onClick={submit}
-                         disabled={loginStatus === STATUS.LOADING}/>
-            <p>Don`t have an account?</p>
-            <SuperLink to='/registration' children={'Sign up'}/>
+            <h2 className={s.login__title}>Welcome</h2>
+            <div>
+                <SuperInput value={email}
+                            onChange={emailChangeHandler}
+                            type={'email'}
+                            label={'Enter your email'}
+                            error={error}
+                            className={s.login__input}/>
+                <SuperInput value={password}
+                            onChange={passwordChangeHandler}
+                            type={'password'}
+                            label={'Enter password'}
+                            error={error}
+                            className={s.login__input}/>
+                <SuperCheckbox checked={rememberMe}
+                               onChange={rememberMeChangeHandler}
+                               children={'Remember me'}
+                               className={s.login__checkbox}/>
+            </div>
+            <>
+                <SuperLink to='/password-recovery' children={'Forgot password'}/>
+                <SuperButton title={'Login'}
+                             type={'primary'}
+                             onClick={submit}
+                             disabled={loginStatus === STATUS.LOADING}
+                             sizeBtn={'large'}/>
+                <div className={s.login__registration_box}>
+                    <p>Don`t have an account?</p>
+                    <SuperLink to='/registration' children={'Sign up'}/>
+                </div>
+            </>
         </div>
     );
 };
