@@ -3,8 +3,8 @@ import './App.css';
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
 import HeaderCont from "../header/HeaderCont";
-import {AppRoutes} from "../components/routes/AppRoutes";
-import {store} from '../store/store';
+import {store} from '../../store/store';
+import {AppRoutes} from '../routes/AppRoutes';
 
 function App() {
 
@@ -12,11 +12,11 @@ function App() {
         <Provider store={store}>
             <BrowserRouter>
                 <div className='app_wrapper'>
-                    <HeaderCont />
-                    <AppRoutes />
+                    <HeaderCont/>
+                    <AppRoutes/>
                 </div>
             </BrowserRouter>
-       </Provider>
+        </Provider>
     );
 }
 
