@@ -3,7 +3,7 @@ import {SuperNavLink} from "../common/SuperNavLink/SuperNavLink";
 
 const HeaderCont = () => {
     return (
-        <header>
+        <header style={{backgroundColor: '#4b4e6d', position: "absolute", top: '0'}}>
             <nav>
                 <SuperNavLink to='/profile' children='profile'/>
                 <SuperNavLink to='/login' children='login'/>

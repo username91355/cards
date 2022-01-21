@@ -1,0 +1,12 @@
+.superLink {
+    text-decoration: none;
+    color: #84DCC6;
+}
+
+.superLink:hover {
+    color: white;
+}
+
+.superLink:active {
+    color: #4b4e6d;
+}
