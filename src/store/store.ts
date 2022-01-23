@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import thunk, { ThunkAction } from "redux-thunk";
+import thunk, {ThunkAction} from "redux-thunk";
 import {profileReducer} from "./reducers/profile-reducer";
 import {loginReducer} from "./reducers/login-reducer";
 
@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
     profile: profileReducer,
 });
 
-export const store = createStore(rootReducer, applyMiddleware(thunk))
+export const store = createStore(rootReducer, applyMiddleware(thunk));
 
 //App state type
 export type TAppState = ReturnType<typeof rootReducer>;
@@ -20,8 +20,8 @@ export type TAppAction = any;
 export type TAppDispatch = typeof store.dispatch;
 
 //App thunk type
-export type ThunkType = ThunkAction<void, TAppState, unknown, TAppAction>
+export type ThunkType = ThunkAction<void, TAppState, unknown, TAppAction>;
 
 //for dev..
 //@ts-ignore
-window.store = store
+window.store = store;

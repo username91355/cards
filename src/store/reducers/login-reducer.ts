@@ -19,7 +19,7 @@ export const loginIState = {
     error: null as Nullable<string>
 };
 
-export const loginReducer = (state: TLoginState = loginIState, action: any) => {
+export const loginReducer = (state: TLoginState = loginIState, action: TLoginAction) => {
     switch (action.type) {
         case ACTIONS.SET_USER_DATA:
         case ACTIONS.SET_LOGIN_ERROR:
@@ -33,10 +33,10 @@ export const loginReducer = (state: TLoginState = loginIState, action: any) => {
     }
 };
 
-const setUserData = (payload: any) => ({type: ACTIONS.SET_USER_DATA, payload});
-const setAuthStatus = (isAuth: boolean) => ({type: ACTIONS.SET_USER_DATA, payload: {isAuth}});
-const setLoginStatus = (loginStatus: STATUS) => ({type: ACTIONS.SET_USER_DATA, payload: {loginStatus}});
-export const setLoginError = (error: string | null) => ({type: ACTIONS.SET_LOGIN_ERROR, payload: {error}});
+const setUserData = (payload: any) => ({type: ACTIONS.SET_USER_DATA, payload} as const);
+const setAuthStatus = (isAuth: boolean) => ({type: ACTIONS.SET_AUTH_STATUS, payload: {isAuth}} as const);
+const setLoginStatus = (loginStatus: STATUS) => ({type: ACTIONS.SET_USER_DATA, payload: {loginStatus}} as const);
+export const setLoginError = (error: string | null) => ({type: ACTIONS.SET_LOGIN_ERROR, payload: {error}} as const);
 
 export const login = (email: string, password: string, rememberMe: boolean): ThunkType => async dispatch => {
     try {
@@ -51,4 +51,15 @@ export const login = (email: string, password: string, rememberMe: boolean): Thu
         dispatch(setLoginError(err.response ? err.response.data.error : err.message));
         dispatch(setLoginStatus(STATUS.ERROR));
     }
-}
+};
+
+//types
+type TLoginAction =
+    | TSetUserData
+    | TSetAuthStatus
+    | TSetLoginStatus
+    | TSetLoginError
+type TSetUserData = ReturnType<typeof setUserData>
+type TSetAuthStatus = ReturnType<typeof setAuthStatus>
+type TSetLoginStatus = ReturnType<typeof setLoginStatus>
+type TSetLoginError = ReturnType<typeof setLoginError>

@@ -40,18 +40,19 @@ const Login: React.FC<IProps> = props => {
                             onChange={emailChangeHandler}
                             type={'email'}
                             label={'Enter your email'}
-                            error={error}
+                            error={null}
                             className={s.login__input}/>
                 <SuperInput value={password}
                             onChange={passwordChangeHandler}
                             type={'password'}
                             label={'Enter password'}
-                            error={error}
+                            error={null}
                             className={s.login__input}/>
                 <SuperCheckbox checked={rememberMe}
                                onChange={rememberMeChangeHandler}
                                children={'Remember me'}
                                className={s.login__checkbox}/>
+                <div className={s.login__error}>{error}</div>
             </div>
             <>
                 <SuperLink to='/password-recovery' children={'Forgot password'}/>
