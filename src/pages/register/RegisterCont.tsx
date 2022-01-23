@@ -71,6 +71,7 @@ const RegisterCont: React.FC = () => {
                       email={email}
                       password={password}
                       confirmPassword={confirmPassword}
+                      loginStatus={loginStatus}
                       emailChangeHandler={emailChangeHandler}
                       passwordChangeHandler={passwordChangeHandler}
                       passwordConfirmChangeHandler={passwordConfirmChangeHandler}

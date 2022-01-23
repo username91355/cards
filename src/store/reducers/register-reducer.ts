@@ -40,11 +40,11 @@ export const register = (email: string, password: string): ThunkType => async di
         if (response.addedUser) {
             dispatch(setRegisterStatus(STATUS.SUCCESS));
         } else {
-            dispatch(setRegisterStatus(STATUS.ERROR));
             throw new Error(response);
         }
 
     } catch (err: Error | unknown) {
+        dispatch(setRegisterStatus(STATUS.ERROR));
         if (err instanceof Error) {
             dispatch(setRegisterError(err.message))
         }

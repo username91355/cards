@@ -16,9 +16,9 @@
 }
 
 .register__error {
-    display: block;
     text-align: center;
     height: 1em;
+    width: 300px;
     color: #fd6d6d;
 }
 

@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Register.module.css';
 import {SuperInput} from '../../components/common/SuperInput/SuperInput';
 import {SuperButton} from '../../components/common/SuperButton/SuperButton';
-import {Nullable} from "../../utils/types/types";
+import {Nullable, STATUS} from "../../utils/types/types";
 
 interface IProps {
     error: string | null
@@ -11,6 +11,7 @@ interface IProps {
     email: string
     password: string
     confirmPassword: string
+    loginStatus: STATUS
     emailChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
     passwordChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
     passwordConfirmChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
@@ -27,6 +28,7 @@ const Register: React.FC<IProps> = props => {
         email,
         password,
         confirmPassword,
+        loginStatus,
         emailChangeHandler,
         passwordChangeHandler,
         passwordConfirmChangeHandler,
@@ -56,15 +58,17 @@ const Register: React.FC<IProps> = props => {
                             className={s.register__input}
                             type={'password'}
                             label={'Confirm password'}/>
-                <span className={s.register__error}>{error}</span>
+                <div className={s.register__error}>{error}</div>
             </div>
             <div className={s.register__buttons}>
                 <SuperButton title={'Cancel'}
                              type={'secondary'}
-                             onClick={cancel}/>
+                             onClick={cancel}
+                             disabled={loginStatus === STATUS.LOADING}/>
                 <SuperButton title={'Register'}
                              type={'primary'}
-                             onClick={register}/>
+                             onClick={register}
+                             disabled={loginStatus === STATUS.LOADING}/>
             </div>
         </div>
     );
