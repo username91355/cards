@@ -8,6 +8,7 @@ import {SuperSelect} from "../../components/common/SuperSelect/SuperSelect";
 import {SuperCheckbox} from "../../components/common/SuperCheckbox/SuperCheckbox";
 import {SuperLink} from "../../components/common/SuperLink/SuperLink";
 import {LargeContainer} from "../../components/lagre-container/LargeContainer";
+import {Preloader} from "../../components/common/Preloader/Preloader";
 
 const TestComponents = () => {
     const [checkedRadio, setCheckedRadio] = useState(false)
@@ -46,6 +47,7 @@ const TestComponents = () => {
                     <SuperCheckbox checked={true} children={'Second checkbox'}/>
                     <hr/>
                     <SuperLink to={'#'} children={'test link'}/>
+                    <Preloader />
                 </div>
             </LargeContainer>
         </div>
