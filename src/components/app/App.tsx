@@ -1,22 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
-import {Provider} from "react-redux";
-import {BrowserRouter} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import HeaderCont from "../header/HeaderCont";
-import {store} from '../../store/store';
 import {AppRoutes} from '../routes/AppRoutes';
+import {me} from '../../store/reducers/login-reducer';
+import {TAppState} from "../../store/store";
+import {Preloader} from '../common/Preloader/Preloader';
 
-function App() {
+const App: React.FC = () => {
+
+    const
+        dispatch = useDispatch(),
+        loginStatus = useSelector((state: TAppState) => state.login.loginStatus);
+
+    useEffect(() => {
+        dispatch(me());
+    }, []);
 
     return (
-        <Provider store={store}>
-            <BrowserRouter>
-                <div className='app__wrapper'>
+        <div className='app__wrapper'>
+            {loginStatus
+                ? <Preloader/>
+                : <>
                     <HeaderCont/>
                     <AppRoutes/>
-                </div>
-            </BrowserRouter>
-        </Provider>
+                </>
+            }
+        </div>
     );
 }
 
