@@ -2,9 +2,12 @@ import React, {ChangeEvent} from 'react';
 import s from './Register.module.css';
 import {SuperInput} from '../../components/common/SuperInput/SuperInput';
 import {SuperButton} from '../../components/common/SuperButton/SuperButton';
+import {Nullable} from "../../utils/types/types";
 
 interface IProps {
     error: string | null
+    emailError: Nullable<string>
+    passwordError: Nullable<string>
     email: string
     password: string
     confirmPassword: string
@@ -19,6 +22,8 @@ const Register: React.FC<IProps> = props => {
 
     const {
         error,
+        emailError,
+        passwordError,
         email,
         password,
         confirmPassword,
@@ -34,16 +39,19 @@ const Register: React.FC<IProps> = props => {
             <div>
                 <h2 className={s.register__title}>Create an account</h2>
                 <SuperInput value={email}
+                            error={emailError}
                             onChange={emailChangeHandler}
                             className={s.register__input}
                             type={'email'}
                             label={'Enter email'}/>
                 <SuperInput value={password}
+                            error={passwordError}
                             onChange={passwordChangeHandler}
                             className={s.register__input}
                             type={'password'}
                             label={'Enter password'}/>
                 <SuperInput value={confirmPassword}
+                            error={passwordError}
                             onChange={passwordConfirmChangeHandler}
                             className={s.register__input}
                             type={'password'}

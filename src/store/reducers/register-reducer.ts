@@ -26,7 +26,7 @@ const setRegisterStatus = (registerStatus: STATUS) => ({
     payload: {registerStatus}
 } as const);
 
-const setRegisterError = (registerError: string) => ({
+export const setRegisterError = (registerError: string | null) => ({
     type: ACTIONS.SET_REGISTER_ERROR,
     payload: {registerError}
 } as const);
@@ -36,7 +36,7 @@ export const register = (email: string, password: string): ThunkType => async di
         dispatch(setRegisterStatus(STATUS.LOADING));
 
         const response = await cardsAPI.register(email, password);
-debugger
+
         if (response.addedUser) {
             dispatch(setRegisterStatus(STATUS.SUCCESS));
         } else {
@@ -52,6 +52,8 @@ debugger
 };
 
 //types
-type TRegisterActions = | TSetRegisterStatus | TSetRegisterError
-type TSetRegisterStatus = ReturnType<typeof setRegisterStatus>
-type TSetRegisterError = ReturnType<typeof setRegisterError>
+type TRegisterActions =
+    | TSetRegisterStatus
+    | TSetRegisterError;
+type TSetRegisterStatus = ReturnType<typeof setRegisterStatus>;
+type TSetRegisterError = ReturnType<typeof setRegisterError>;

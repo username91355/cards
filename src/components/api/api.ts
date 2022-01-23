@@ -17,6 +17,6 @@ export const cardsAPI = {
         return instance
             .post('/auth/register', {email, password})
             .then(res => res.data)
-            .catch(err => err.response.data.error)
+            .catch(err => err.response.data.error);
     },
 }
