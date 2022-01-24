@@ -12,6 +12,7 @@ export const AppRoutes = () => {
         <Routes>
             <Route path='/' element={<ProfileCont/>}/>
             <Route path='/profile' element={<ProfileCont/>}/>
+            <Route path='/cards' element={<div>Cards</div>}/>
             <Route path='/login' element={<LoginCont/>}/>
             <Route path='/register' element={<RegisterCont/>}/>
             <Route path='/password-recovery' element={<PasswordRecoveryCont/>}/>

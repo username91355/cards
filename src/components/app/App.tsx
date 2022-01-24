@@ -2,21 +2,22 @@ import React from 'react';
 import './App.css';
 import {Provider} from "react-redux";
 import {BrowserRouter} from "react-router-dom";
-import HeaderCont from "../header/HeaderCont";
 import {store} from '../../store/store';
-import {AppRoutes} from '../routes/AppRoutes';
+import Main from "../main/Main";
 
 function App() {
 
     return (
-        <Provider store={store}>
+        <React.StrictMode>
             <BrowserRouter>
-                <div className='app__wrapper'>
-                    <HeaderCont/>
-                    <AppRoutes/>
-                </div>
+                <Provider store={store}>
+                    <div className='app__wrapper'>
+                        <Main/>
+                    </div>
+                </Provider>
             </BrowserRouter>
-        </Provider>
+
+        </React.StrictMode>
     );
 }
 

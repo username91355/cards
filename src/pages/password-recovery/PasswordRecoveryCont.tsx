@@ -1,10 +1,12 @@
 import React from 'react';
+import {SmallContainer} from "../../components/small-container/SmallContainer";
+import PasswordRecovery from "./PasswordRecovery";
 
 const PasswordRecoveryCont = () => {
     return (
-        <div>
-            PasswordRecoveryCont
-        </div>
+        <SmallContainer>
+            <PasswordRecovery/>
+        </SmallContainer>
     );
 };
 
