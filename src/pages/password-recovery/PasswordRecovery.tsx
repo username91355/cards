@@ -4,14 +4,19 @@ import {SuperInput} from '../../components/common/SuperInput/SuperInput';
 import s from "./PasswordRecovery.module.css";
 import {SuperLink} from "../../components/common/SuperLink/SuperLink";
 import mail from './../../assets/img/mail.png';
+import {cardsAPI} from '../../components/api/api';
+import {useNavigate} from 'react-router-dom';
 
 const PasswordRecovery = () => {
 
+    const navigate = useNavigate();
     const [email, setEmail] = useState<string>('');
     const [emailError, setEmailError] = useState<string | null>(null);
 
     const recovery = () => {
-
+        cardsAPI.forgotPassword(email).then(res => {
+            navigate
+        })
     }
 
     return (

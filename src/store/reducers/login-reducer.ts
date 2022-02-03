@@ -7,16 +7,6 @@ export const loginIState = {
     isAuth: false as boolean,
     loginStatus: STATUS.PENDING as STATUS,
     user: null as Nullable<IUser>,
-    // _id: null as Nullable<string>,
-    // email: null as Nullable<string>,
-    // name: null as Nullable<string>,
-    // avatar: null as Nullable<string>,
-    // publicCardPacksCount: null as Nullable<number>,
-    // created: null as Nullable<Date>,
-    // updated: null as Nullable<Date>,
-    // isAdmin: null as Nullable<boolean>,
-    // verified: null as Nullable<boolean>,
-    // rememberMe: null as Nullable<boolean>,
     error: null as Nullable<string>
 };
 

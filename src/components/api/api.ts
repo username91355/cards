@@ -61,18 +61,27 @@ export const cardsAPI = {
             .catch(err => err.response.data.error);
     },
 
-    forgotPassword(email: string): Promise<IRegisterResponse & string> {
+    forgotPassword(email: string) {
         return instance
-            .post('/auth/register', {
+            .post('/auth/forgot', {
                 email: email,
                 from: "test-front-admin <reactdev31390@yandex.ru>",
                 message:
                     `<div style="background-color: lime; padding: 15px"> password recovery link: 
-                    <a href='http://localhost:3000/#/set-new-password/$token$'>
+                    <a href='https://username91355.github.io/cards/#/entering-new-password/$token$'>
                     link</a></div>`
             })
             .then(res => res.data)
             .catch(err => err.response.data.error);
     },
 
-}
+    setPassword(password: string, token: string) {
+        return instance
+            .post('/auth/set-new-password', {
+                password,
+                resetPasswordToken: token
+            })
+            .then(res => res.data)
+            .catch(err => err.response.data.error);
+    },
+};

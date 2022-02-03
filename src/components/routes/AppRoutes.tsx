@@ -16,7 +16,7 @@ export const AppRoutes = () => {
             <Route path='/login' element={<LoginCont/>}/>
             <Route path='/register' element={<RegisterCont/>}/>
             <Route path='/password-recovery' element={<PasswordRecoveryCont/>}/>
-            <Route path='/entering-new-password' element={<EnteringNewPasswordCont/>}/>
+            <Route path='/entering-new-password/:token' element={<EnteringNewPasswordCont/>}/>
             <Route path='/test-components' element={<TestComponents/>}/>
             <Route path='*' element={<NotFoundCont/>}/>
         </Routes>
