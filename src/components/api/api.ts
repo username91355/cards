@@ -60,4 +60,18 @@ export const cardsAPI = {
             .catch(err => err.response.data.error);
     },
 
+    forgotPassword(email: string): Promise<IRegisterResponse & string> {
+        return instance
+            .post('/auth/register', {
+                email: email,
+                from: "test-front-admin <reactdev31390@yandex.ru>",
+                message:
+                    `<div style="background-color: lime; padding: 15px"> password recovery link: 
+                    <a href='http://localhost:3000/#/set-new-password/$token$'>
+                    link</a></div>`
+            })
+            .then(res => res.data)
+            .catch(err => err.response.data.error);
+    },
+
 }

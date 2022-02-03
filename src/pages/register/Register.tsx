@@ -3,11 +3,12 @@ import s from './Register.module.css';
 import {SuperInput} from '../../components/common/SuperInput/SuperInput';
 import {SuperButton} from '../../components/common/SuperButton/SuperButton';
 import {Nullable, STATUS} from "../../utils/types/types";
+import {SuperLink} from "../../components/common/SuperLink/SuperLink";
 
 interface IProps {
     error: string | null
-    emailError: Nullable<string>
-    passwordError: Nullable<string>
+    emailError: string
+    passwordError: string
     email: string
     password: string
     confirmPassword: string
@@ -38,8 +39,9 @@ const Register: React.FC<IProps> = props => {
 
     return (
         <div className={s.register__wrapper}>
+            <h2>Education cards</h2>
+            <h3 className={s.register__title}>Create an account</h3>
             <div>
-                <h2 className={s.register__title}>Create an account</h2>
                 <SuperInput value={email}
                             error={emailError}
                             onChange={emailChangeHandler}
@@ -69,6 +71,10 @@ const Register: React.FC<IProps> = props => {
                              type={'primary'}
                              onClick={register}
                              disabled={loginStatus === STATUS.LOADING}/>
+            </div>
+            <div className={s.register__login_box}>
+                <p>Do you have an account?</p>
+                <SuperLink to='/login' children={'Sing in'}/>
             </div>
         </div>
     );

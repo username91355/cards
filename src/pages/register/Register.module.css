@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 100%;
 }
 
 .register__title {
@@ -23,7 +22,16 @@
 }
 
 .register__buttons {
+    margin-top: 80px;
     display: flex;
     width: 100%;
     justify-content: space-around;
+}
+
+.register__login_box {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
 }

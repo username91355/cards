@@ -8,6 +8,8 @@ import {SuperLink} from "../../components/common/SuperLink/SuperLink";
 
 interface IProps {
     error: string | null
+    emailError: string
+    passwordError: string
     email: string
     password: string
     rememberMe: boolean
@@ -22,6 +24,8 @@ const Login: React.FC<IProps> = props => {
 
     const {
         error,
+        emailError,
+        passwordError,
         email,
         password,
         rememberMe,
@@ -34,28 +38,31 @@ const Login: React.FC<IProps> = props => {
 
     return (
         <div className={s.login__wrapper}>
-            <h2 className={s.login__title}>Welcome</h2>
-            <div>
+            <h2>Education cards</h2>
+            <h3 className={s.login__title}>Welcome</h3>
+            <div className={s.login__main_box}>
                 <SuperInput value={email}
                             onChange={emailChangeHandler}
                             type={'email'}
                             label={'Enter your email'}
-                            error={null}
+                            error={emailError}
                             className={s.login__input}/>
                 <SuperInput value={password}
                             onChange={passwordChangeHandler}
                             type={'password'}
                             label={'Enter password'}
-                            error={null}
+                            error={passwordError}
                             className={s.login__input}/>
                 <SuperCheckbox checked={rememberMe}
                                onChange={rememberMeChangeHandler}
                                children={'Remember me'}
                                className={s.login__checkbox}/>
                 <div className={s.login__error}>{error}</div>
+                <SuperLink className={s.login__main_box_link}
+                           to='/password-recovery'
+                           children={'Forgot password'}/>
             </div>
             <>
-                <SuperLink to='/password-recovery' children={'Forgot password'}/>
                 <SuperButton title={'Login'}
                              type={'primary'}
                              onClick={submit}
@@ -63,7 +70,7 @@ const Login: React.FC<IProps> = props => {
                              sizeBtn={'large'}/>
                 <div className={s.login__registration_box}>
                     <p>Don`t have an account?</p>
-                    <SuperLink to='/registration' children={'Sign up'}/>
+                    <SuperLink to='/register' children={'Sign up'}/>
                 </div>
             </>
         </div>

@@ -13,7 +13,7 @@ export const SuperLink: React.FC<IProps> = props => {
     const {
         to,
         children,
-        className,
+        className
     } = props;
 
     return <Link className={`${s.superLink} ${className || ''}`} to={to}>{children}</Link>

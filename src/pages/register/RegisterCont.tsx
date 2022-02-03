@@ -5,7 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {TAppState} from "../../store/store";
 import {Navigate, useNavigate} from "react-router-dom";
 import {register, setRegisterError} from '../../store/reducers/register-reducer';
-import {Nullable, STATUS} from "../../utils/types/types";
+import {STATUS} from "../../utils/types/types";
+import {validateConfirmPasswordLength, validateEmail, validatePasswordLength} from '../../utils/validate/validate';
 
 const RegisterCont: React.FC = () => {
 
@@ -15,14 +16,14 @@ const RegisterCont: React.FC = () => {
         error = useSelector((state: TAppState) => state.register.registerError),
         loginStatus = useSelector((state: TAppState) => state.register.registerStatus),
         [email, setEmail] = useState<string>(''),
-        [emailError, setEmailError] = useState<Nullable<string>>(null),
+        [emailError, setEmailError] = useState<string>(''),
         [password, setPassword] = useState<string>(''),
-        [passwordError, setPasswordError] = useState<Nullable<string>>(null),
+        [passwordError, setPasswordError] = useState<string>(''),
         [confirmPassword, setConfirmPassword] = useState<string>('');
 
     const inputEventHandlerWithErrorReset = (func: (value: string) => void, value: string) => {
-        setEmailError(null);
-        setPasswordError(null);
+        setEmailError('');
+        setPasswordError('');
         dispatch(setRegisterError(null));
         func(value);
     };
@@ -39,18 +40,13 @@ const RegisterCont: React.FC = () => {
         inputEventHandlerWithErrorReset(setConfirmPassword, e.currentTarget.value);
     };
 
-    const validateEmail = (email: string) => {
-        const reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-        return !reg.test(email);
-    };
-
     const onRegister = () => {
 
         if (validateEmail(email) || '') {
             setEmailError('Please enter a valid email');
-        } else if (password !== confirmPassword) {
+        } else if (validateConfirmPasswordLength(password, confirmPassword)) {
             setPasswordError('Password confirmation error');
-        } else if (password.length < 8) {
+        } else if (validatePasswordLength(password)) {
             setPasswordError('Minimum password length 8 characters');
         } else {
             dispatch(register(email, password));
