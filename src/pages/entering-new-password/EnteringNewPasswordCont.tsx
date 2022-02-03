@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import {SmallContainer} from '../../components/small-container/SmallContainer';
 import {EnteringNewPassword} from './EnteringNewPassword';
 import {validatePasswordLength} from '../../utils/validate/validate';
@@ -11,6 +11,7 @@ export const EnteringNewPasswordCont = () => {
     const
         dispatch = useDispatch(),
         params = useParams(),
+        navigate = useNavigate(),
         [passwordArea, setPasswordArea] = useState(''),
         [passwordError, setPasswordError] = useState<string | null>('');
 
@@ -21,6 +22,7 @@ export const EnteringNewPasswordCont = () => {
 
         if (params.token) {
             dispatch(setPassword(passwordArea, params.token));
+            navigate('/login');
         }
     };
 
