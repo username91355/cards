@@ -1,19 +1,20 @@
-import axios from "axios";
-import {IRegisterResponse, IUser} from "../../utils/types/types";
+import axios from 'axios';
+import {IDefaultResponse, IRegisterResponse, IUser} from '../utils/types/types';
 
 const instance = axios.create({
     baseURL: 'https://neko-back.herokuapp.com/2.0',
     // baseURL: 'http://localhost:7542/2.0',
     withCredentials: true
-})
+});
 
 export const cardsAPI = {
 
-    login(email: string, password: string, rememberMe: boolean) {
+    login(email: string, password: string, rememberMe: boolean): Promise<IUser> {
         return instance
-            .post('/auth/login', {email, password, rememberMe})
+            .post<IUser>('/auth/login', {email, password, rememberMe})
             .then(res => res.data)
             .catch(err => {
+                debugger
                 if (err.response) {
                     throw err.response.data.error;
                 } else if (err.request) {
@@ -24,9 +25,9 @@ export const cardsAPI = {
             });
     },
 
-    logout() {
+    logout(): Promise<IDefaultResponse> {
         return instance
-            .delete('/auth/me', {})
+            .delete<IDefaultResponse>('/auth/me', {})
             .then(res => res.data)
             .catch(err => {
                 if (err.response) {
@@ -58,30 +59,53 @@ export const cardsAPI = {
         return instance
             .post('/auth/register', {email, password})
             .then(res => res.data)
-            .catch(err => err.response.data.error);
+            .catch(err => {
+                if (err.response) {
+                    throw err.response.data.error;
+                } else if (err.request) {
+                    throw 'Request error';
+                } else {
+                    throw err.message;
+                }
+            });
     },
 
-    forgotPassword(email: string) {
+    forgotPassword(email: string): Promise<IDefaultResponse> {
         return instance
-            .post('/auth/forgot', {
+            .post<IDefaultResponse>('/auth/forgot', {
                 email: email,
                 from: "test-front-admin <reactdev31390@yandex.ru>",
                 message:
-                    `<div style="background-color: lime; padding: 15px"> password recovery link: 
-                    <a href='https://username91355.github.io/cards/#/entering-new-password/$token$'>
-                    link</a></div>`
+                    `<div style="background-color: lime; padding: 15px">Password recovery link: 
+                    <a href='https://username91355.github.io/cards/#/entering-new-password/$token$'>link</a></div>`
             })
             .then(res => res.data)
-            .catch(err => err.response.data.error);
+            .catch(err => {
+                if (err.response) {
+                    throw err.response.data.error;
+                } else if (err.request) {
+                    throw 'Request error';
+                } else {
+                    throw err.message;
+                }
+            });
     },
 
-    setPassword(password: string, token: string) {
+    setPassword(password: string, token: string): Promise<IDefaultResponse> {
         return instance
-            .post('/auth/set-new-password', {
+            .post<IDefaultResponse>('/auth/set-new-password', {
                 password,
                 resetPasswordToken: token
             })
             .then(res => res.data)
-            .catch(err => err.response.data.error);
+            .catch(err => {
+                if (err.response) {
+                    throw err.response.data.error;
+                } else if (err.request) {
+                    throw 'Request error';
+                } else {
+                    throw err.message;
+                }
+            });
     },
 };

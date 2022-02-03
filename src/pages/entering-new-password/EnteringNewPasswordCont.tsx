@@ -1,24 +1,43 @@
 import React, {useState} from 'react';
-import { useParams } from 'react-router-dom';
-import {SmallContainer} from "../../components/small-container/SmallContainer";
-import EnteringNewPassword from "./EnteringNewPassword";
+import {useParams} from 'react-router-dom';
+import {SmallContainer} from '../../components/small-container/SmallContainer';
+import {EnteringNewPassword} from './EnteringNewPassword';
+import {validatePasswordLength} from '../../utils/validate/validate';
+import {useDispatch} from 'react-redux';
+import {setPassword} from '../../store/reducers/register-reducer';
 
-const EnteringNewPasswordCont = () => {
+export const EnteringNewPasswordCont = () => {
 
-    const params = useParams();
-    const [password, setPassword] = useState('');
+    const
+        dispatch = useDispatch(),
+        params = useParams(),
+        [passwordArea, setPasswordArea] = useState(''),
+        [passwordError, setPasswordError] = useState<string | null>('');
 
     const setNewPassword = () => {
+        if (validatePasswordLength(passwordArea)) {
+            setPasswordError('Password length must be more than 8 characters');
+        }
 
+        if (params.token) {
+            dispatch(setPassword(passwordArea, params.token));
+        }
+    };
+
+    const changePasswordArea = (value: string) => {
+
+        if (passwordError) {
+            setPasswordError(null);
+        }
+        setPasswordArea(value);
     }
 
     return (
         <SmallContainer>
-            <EnteringNewPassword password={password}
-                                 setPassword={setPassword}
+            <EnteringNewPassword password={passwordArea}
+                                 passwordError={passwordError}
+                                 setPassword={changePasswordArea}
                                  setNewPassword={setNewPassword}/>
         </SmallContainer>
     );
 };
-
-export default EnteringNewPasswordCont;

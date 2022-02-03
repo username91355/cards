@@ -1,5 +1,5 @@
 import {ThunkType} from '../store';
-import {cardsAPI} from '../../components/api/api';
+import {cardsAPI} from '../../api/api';
 import {Nullable, STATUS, TRegisterState} from '../../utils/types/types';
 import {ACTIONS} from '../actions';
 
@@ -43,16 +43,25 @@ export const register = (email: string, password: string): ThunkType => async di
             throw new Error(response);
         }
 
-    } catch (err: Error | unknown) {
+    } catch (err: any) {
+        dispatch(setRegisterError(err));
         dispatch(setRegisterStatus(STATUS.ERROR));
-        if (err instanceof Error) {
-            dispatch(setRegisterError(err.message))
-        }
+
+    }
+};
+
+export const setPassword = (password: string, token: string): ThunkType => async dispatch => {
+    try {
+        const response = await cardsAPI.setPassword(password, token);
+
+    } catch (err: any) {
+        console.log(err);
+        dispatch(setRegisterStatus(STATUS.ERROR));
     }
 };
 
 //types
-type TRegisterActions =
+export type TRegisterActions =
     | TSetRegisterStatus
     | TSetRegisterError;
 type TSetRegisterStatus = ReturnType<typeof setRegisterStatus>;

@@ -1,14 +1,14 @@
 import React, {ChangeEvent, useState} from 'react';
-import {SmallContainer} from "../../components/small-container/SmallContainer";
-import Register from "./Register";
-import {useDispatch, useSelector} from "react-redux";
-import {TAppState} from "../../store/store";
-import {Navigate, useNavigate} from "react-router-dom";
+import {SmallContainer} from '../../components/small-container/SmallContainer';
+import {Register} from './Register';
+import {useDispatch, useSelector} from 'react-redux';
+import {TAppState} from '../../store/store';
+import {Navigate, useNavigate} from 'react-router-dom';
 import {register, setRegisterError} from '../../store/reducers/register-reducer';
-import {STATUS} from "../../utils/types/types";
+import {STATUS} from '../../utils/types/types';
 import {validateConfirmPasswordLength, validateEmail, validatePasswordLength} from '../../utils/validate/validate';
 
-const RegisterCont: React.FC = () => {
+export const RegisterCont: React.FC = () => {
 
     const
         dispatch = useDispatch(),
@@ -78,4 +78,3 @@ const RegisterCont: React.FC = () => {
     );
 };
 
-export default RegisterCont;

@@ -1,25 +1,31 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
-import {Provider} from "react-redux";
-import {HashRouter} from "react-router-dom";
-import {store} from '../../store/store';
-import HeaderCont from "../header/HeaderCont";
-import {AppRoutes} from "../routes/AppRoutes";
+import {useDispatch, useSelector} from 'react-redux';
+import {HeaderCont} from '../header/HeaderCont';
+import {AppRoutes} from '../routes/AppRoutes';
+import {me} from '../../store/reducers/login-reducer';
+import {Preloader} from '../common/Preloader/Preloader';
+import {TAppState} from '../../store/store';
 
-function App() {
+export const App = () => {
+
+    const
+        dispatch = useDispatch(),
+        isInit = useSelector((state: TAppState) => state.login.isInit);
+
+    useEffect(() => {
+        dispatch(me());
+    }, [])
 
     return (
-        <React.StrictMode>
-            <HashRouter>
-                <Provider store={store}>
-                    <div className='app__wrapper'>
-                        <HeaderCont/>
-                        <AppRoutes/>
-                    </div>
-                </Provider>
-            </HashRouter>
-        </React.StrictMode>
+        <div className='app__wrapper'>
+            {!isInit
+                ? <Preloader/>
+                : <>
+                    <HeaderCont/>
+                    <AppRoutes/>
+                </>
+            }
+        </div>
     );
-}
-
-export default App;
+};

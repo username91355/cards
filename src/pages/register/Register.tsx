@@ -2,8 +2,8 @@ import React, {ChangeEvent} from 'react';
 import s from './Register.module.css';
 import {SuperInput} from '../../components/common/SuperInput/SuperInput';
 import {SuperButton} from '../../components/common/SuperButton/SuperButton';
-import {Nullable, STATUS} from "../../utils/types/types";
-import {SuperLink} from "../../components/common/SuperLink/SuperLink";
+import {STATUS} from '../../utils/types/types';
+import {SuperLink} from '../../components/common/SuperLink/SuperLink';
 
 interface IProps {
     error: string | null
@@ -20,7 +20,7 @@ interface IProps {
     cancel: () => void
 }
 
-const Register: React.FC<IProps> = props => {
+export const Register: React.FC<IProps> = props => {
 
     const {
         error,
@@ -79,5 +79,3 @@ const Register: React.FC<IProps> = props => {
         </div>
     );
 };
-
-export default Register;

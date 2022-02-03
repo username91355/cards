@@ -1,23 +1,19 @@
-import React, {useState} from 'react';
+import React from 'react';
+import s from './PasswordRecovery.module.css';
 import {SuperButton} from '../../components/common/SuperButton/SuperButton';
 import {SuperInput} from '../../components/common/SuperInput/SuperInput';
-import s from "./PasswordRecovery.module.css";
-import {SuperLink} from "../../components/common/SuperLink/SuperLink";
-import mail from './../../assets/img/mail.png';
-import {cardsAPI} from '../../components/api/api';
-import {useNavigate} from 'react-router-dom';
+import {SuperLink} from '../../components/common/SuperLink/SuperLink';
 
-const PasswordRecovery = () => {
+interface IProps {
+    email: string
+    setEmail: (str: string) => void
+    emailError: string | null
+    recovery: () => void
+}
 
-    const navigate = useNavigate();
-    const [email, setEmail] = useState<string>('');
-    const [emailError, setEmailError] = useState<string | null>(null);
+export const PasswordRecovery: React.FC<IProps> = props => {
 
-    const recovery = () => {
-        cardsAPI.forgotPassword(email).then(res => {
-            navigate
-        })
-    }
+    const {email,setEmail,emailError,recovery} = props;
 
     return (
         <div className={s.recovery__wrapper}>
@@ -26,16 +22,17 @@ const PasswordRecovery = () => {
             <div>
                 <SuperInput className={s.recovery__input}
                             value={email}
+                            error={emailError}
                             onChangeText={setEmail}
                             type={'email'}
                             label={'Enter email'}/>
-                <div className={s.recovery__error}>{emailError}</div>
             </div>
             <div className={s.recovery__text}>* Enter your email address,
                 and we will send you further instructions
             </div>
             <div className={s.recovery__buttons}>
                 <SuperButton title={'Send instructions'}
+                             onClick={recovery}
                              type={'primary'}/>
             </div>
             <div className={s.recovery__login_box}>
@@ -45,20 +42,3 @@ const PasswordRecovery = () => {
         </div>
     );
 };
-
-const checkEmail: React.FC = () => {
-    return (
-        <div className={s.checkEmail__wrapper}>
-            <h2>Education cards</h2>
-            <h3 className={s.checkEmail__title}>Password recovery</h3>
-            <img className={s.checkEmail__img} src={mail} alt="image"/>
-            <div className={s.checkEmail__text}>We`ve sent an Email with instruction to</div>
-            <div>{'test@mail.com'}</div>
-            <div className={s.checkEmail__login_box}>
-                <SuperLink to='/login' children={'Return to login page'}/>
-            </div>
-        </div>
-    );
-}
-
-export default PasswordRecovery;

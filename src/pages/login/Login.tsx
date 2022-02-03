@@ -1,10 +1,10 @@
 import React, {ChangeEvent} from 'react';
-import s from "./Login.module.css";
-import {SuperInput} from "../../components/common/SuperInput/SuperInput";
-import {SuperCheckbox} from "../../components/common/SuperCheckbox/SuperCheckbox";
-import {SuperButton} from "../../components/common/SuperButton/SuperButton";
-import {STATUS} from "../../utils/types/types";
-import {SuperLink} from "../../components/common/SuperLink/SuperLink";
+import s from './Login.module.css';
+import {SuperInput} from '../../components/common/SuperInput/SuperInput';
+import {SuperCheckbox} from '../../components/common/SuperCheckbox/SuperCheckbox';
+import {SuperButton} from '../../components/common/SuperButton/SuperButton';
+import {STATUS} from '../../utils/types/types';
+import {SuperLink} from '../../components/common/SuperLink/SuperLink';
 
 interface IProps {
     error: string | null
@@ -20,7 +20,7 @@ interface IProps {
     submit: () => void
 }
 
-const Login: React.FC<IProps> = props => {
+export const Login: React.FC<IProps> = props => {
 
     const {
         error,
@@ -76,5 +76,3 @@ const Login: React.FC<IProps> = props => {
         </div>
     );
 };
-
-export default Login;

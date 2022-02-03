@@ -1,18 +1,21 @@
 import React, {useState} from 'react';
 import s from './Test.module.css';
-import {SuperButton} from "../../components/common/SuperButton/SuperButton";
-import {SuperTextInput} from "../../components/common/SuperTextInput/SuperTextInput";
-import {SuperInput} from "../../components/common/SuperInput/SuperInput";
-import {SuperRadio} from "../../components/common/SuperRadio/SuperRadio";
-import {SuperSelect} from "../../components/common/SuperSelect/SuperSelect";
-import {SuperCheckbox} from "../../components/common/SuperCheckbox/SuperCheckbox";
-import {SuperLink} from "../../components/common/SuperLink/SuperLink";
-import {LargeContainer} from "../../components/lagre-container/LargeContainer";
-import {Preloader} from "../../components/common/Preloader/Preloader";
+import {SuperButton} from '../../components/common/SuperButton/SuperButton';
+import {SuperTextInput} from '../../components/common/SuperTextInput/SuperTextInput';
+import {SuperInput} from '../../components/common/SuperInput/SuperInput';
+import {SuperRadio} from '../../components/common/SuperRadio/SuperRadio';
+import {SuperSelect} from '../../components/common/SuperSelect/SuperSelect';
+import {SuperCheckbox} from '../../components/common/SuperCheckbox/SuperCheckbox';
+import {SuperLink} from '../../components/common/SuperLink/SuperLink';
+import {LargeContainer} from '../../components/lagre-container/LargeContainer';
+import {Preloader} from '../../components/common/Preloader/Preloader';
 
-const TestComponents = () => {
-    const [checkedRadio, setCheckedRadio] = useState(false)
-    const [checked, setChecked] = useState(false)
+export const TestComponents: React.FC = () => {
+
+    const
+        [checkedRadio, setCheckedRadio] = useState(false),
+        [checked, setChecked] = useState(false);
+
     return (
         <div>
             <LargeContainer>
@@ -47,11 +50,9 @@ const TestComponents = () => {
                     <SuperCheckbox checked={true} children={'Second checkbox'}/>
                     <hr/>
                     <SuperLink to={'#'} children={'test link'}/>
-                    <Preloader />
+                    <Preloader/>
                 </div>
             </LargeContainer>
         </div>
     );
 };
-
-export default TestComponents;

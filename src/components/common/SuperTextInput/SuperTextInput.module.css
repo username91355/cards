@@ -16,6 +16,11 @@
     color: white;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px #4b4e6d inset;
+    -webkit-text-fill-color: white;
+}
+
 .error_text {
     color: #c76767;
 }

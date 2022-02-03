@@ -2,12 +2,12 @@ import React, {ChangeEvent, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {Navigate} from 'react-router-dom';
 import {TAppState} from '../../store/store';
-import Login from './Login';
+import {Login} from './Login';
 import {login, setLoginError} from '../../store/reducers/login-reducer';
-import {SmallContainer} from "../../components/small-container/SmallContainer";
-import {validateEmail, validatePasswordLength} from "../../utils/validate/validate";
+import {SmallContainer} from '../../components/small-container/SmallContainer';
+import {validateEmail, validatePasswordLength} from '../../utils/validate/validate';
 
-const LoginCont: React.FC = () => {
+export const LoginCont: React.FC = () => {
 
     const
         dispatch = useDispatch(),
@@ -18,7 +18,7 @@ const LoginCont: React.FC = () => {
         [emailError, setEmailError] = useState<string>(''),
         [password, setPassword] = useState<string>(''),
         [passwordError, setPasswordError] = useState<string>(''),
-        [rememberMe, setRememberMe] = useState<boolean>(false)
+        [rememberMe, setRememberMe] = useState<boolean>(false);
 
     const inputEventHandlerWithErrorReset = (func: (value: string) => void, value: string) => {
         if (error) {
@@ -71,5 +71,3 @@ const LoginCont: React.FC = () => {
         </SmallContainer>
     );
 };
-
-export default LoginCont;

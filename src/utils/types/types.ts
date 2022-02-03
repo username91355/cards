@@ -17,6 +17,10 @@ export enum STATUS {
 }
 
 //for api
+export interface IDefaultResponse {
+    info: string
+    error: string
+}
 
 export interface IRegisterResponse {
     addedUser: IUser

@@ -1,17 +1,18 @@
 import React from 'react';
-import s from "./EnteringNewPassword.module.css";
-import {SuperInput} from "../../components/common/SuperInput/SuperInput";
-import {SuperButton} from "../../components/common/SuperButton/SuperButton";
+import s from './EnteringNewPassword.module.css';
+import {SuperInput} from '../../components/common/SuperInput/SuperInput';
+import {SuperButton} from '../../components/common/SuperButton/SuperButton';
 
 interface IProps {
     password: string
+    passwordError: string | null
     setPassword: (str: string) => void
     setNewPassword: () => void
 }
 
-const EnteringNewPassword: React.FC<IProps> = props => {
+export const EnteringNewPassword: React.FC<IProps> = props => {
 
-    const {password, setPassword,setNewPassword} = props;
+    const {password, passwordError, setPassword,setNewPassword} = props;
 
     return (
         <div className={s.newPass__wrapper}>
@@ -21,6 +22,7 @@ const EnteringNewPassword: React.FC<IProps> = props => {
                 <SuperInput className={s.newPass__input}
                             value={password}
                             onChangeText={setPassword}
+                            error={passwordError}
                             type={'password'}
                             label={'Enter new password'}/>
                 <div className={s.newPass__error}>{''}</div>
@@ -36,5 +38,3 @@ const EnteringNewPassword: React.FC<IProps> = props => {
         </div>
     );
 };
-
-export default EnteringNewPassword;
