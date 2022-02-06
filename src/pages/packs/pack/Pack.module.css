@@ -1,0 +1,26 @@
+.pack {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.pack__info {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 2fr;
+    align-items: center;
+    width: 100%;
+    padding: 0 1em;
+}
+
+.pack__info > div{
+    overflow-x: hidden;
+}
+
+.pack__info> div:nth-child(2){
+    text-align: center;
+}
+
+.pack__buttons {
+    display: flex;
+    flex-wrap: nowrap;
+}

@@ -7,7 +7,7 @@ import {PasswordRecoveryCont} from '../../pages/password-recovery/PasswordRecove
 import {EnteringNewPasswordCont} from '../../pages/entering-new-password/EnteringNewPasswordCont';
 import {RegisterCont} from '../../pages/register/RegisterCont';
 import {TestComponents} from '../../pages/test-components/TestComponents';
-import {CardsCont} from '../../pages/cards/CardsCont';
+import {PacksCont} from '../../pages/packs/PacksCont';
 import {CheckEmail} from '../../pages/check-email/CheckEmail';
 
 export const AppRoutes: React.FC = () => {
@@ -15,7 +15,8 @@ export const AppRoutes: React.FC = () => {
         <Routes>
             <Route path='/' element={<ProfileCont/>}/>
             <Route path='/profile' element={<ProfileCont/>}/>
-            <Route path='/cards' element={<CardsCont/>}/>
+            <Route path='/packs' element={<PacksCont/>}/>
+            {/*<Route path='/card' element={<Cont/>}/>*/}
             <Route path='/login' element={<LoginCont/>}/>
             <Route path='/register' element={<RegisterCont/>}/>
             <Route path='/password-recovery' element={<PasswordRecoveryCont/>}/>

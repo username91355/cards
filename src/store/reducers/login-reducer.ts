@@ -1,7 +1,7 @@
 import {IUser, Nullable, STATUS, TLoginState} from '../../utils/types/types';
 import {ThunkType} from '../store';
-import {cardsAPI} from '../../api/api';
 import {ACTIONS} from '../actions';
+import { authAPI } from '../../api/auth-api';
 
 export const loginIState = {
     isInit: false as boolean,
@@ -35,7 +35,7 @@ export const login = (email: string, password: string, rememberMe: boolean): Thu
     try {
         dispatch(setLoginStatus(STATUS.LOADING));
 
-        const response = await cardsAPI.login(email, password, rememberMe);
+        const response = await authAPI.login(email, password, rememberMe);
 
         dispatch(setUserData(response));
         dispatch(setAuthStatus(true));
@@ -50,7 +50,7 @@ export const logout = (): ThunkType => async dispatch => {
     try {
         dispatch(setLoginStatus(STATUS.LOADING));
 
-        const response = await cardsAPI.logout();
+        const response = await authAPI.logout();
 
         if (response.info) {
             dispatch(setAuthStatus(false));
@@ -67,7 +67,7 @@ export const me = (): ThunkType => async dispatch => {
     try {
         dispatch(setLoginStatus(STATUS.LOADING));
 
-        const response = await cardsAPI.me();
+        const response = await authAPI.me();
 
         dispatch(setUserData(response));
         dispatch(setAuthStatus(true));

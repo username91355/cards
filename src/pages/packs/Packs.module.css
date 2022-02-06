@@ -1,0 +1,21 @@
+.packs {
+    display: flex;
+}
+
+.packs__search {
+
+}
+
+.packs__list {
+    border-radius: 1em;
+    background-color: #7f83a8;
+}
+
+.packs__list > *:nth-child(2n+1) {
+    background-color: #666994;
+}
+
+.packs__list > *:first-child {
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}

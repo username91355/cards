@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {SmallContainer} from '../../components/small-container/SmallContainer';
 import {PasswordRecovery} from './PasswordRecovery';
 import {useNavigate} from 'react-router-dom';
-import {cardsAPI} from '../../api/api';
+import { authAPI } from '../../api/auth-api';
 
 export const PasswordRecoveryCont: React.FC = () => {
 
@@ -12,7 +12,7 @@ export const PasswordRecoveryCont: React.FC = () => {
         [emailError, setEmailError] = useState<string | null>(null);
 
     const recovery = () => {
-        cardsAPI.forgotPassword(email).then(() => {
+        authAPI.forgotPassword(email).then(() => {
             navigate('/check-email');
         });
     };

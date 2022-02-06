@@ -1,7 +1,7 @@
 import {ThunkType} from '../store';
-import {cardsAPI} from '../../api/api';
 import {Nullable, STATUS, TRegisterState} from '../../utils/types/types';
 import {ACTIONS} from '../actions';
+import { authAPI } from '../../api/auth-api';
 
 export const registerIState = {
     registerStatus: STATUS.PENDING as STATUS,
@@ -35,12 +35,12 @@ export const register = (email: string, password: string): ThunkType => async di
     try {
         dispatch(setRegisterStatus(STATUS.LOADING));
 
-        const response = await cardsAPI.register(email, password);
+        const response = await authAPI.register(email, password);
 
         if (response.addedUser) {
             dispatch(setRegisterStatus(STATUS.SUCCESS));
         } else {
-            throw new Error(response);
+            new Error(response);
         }
 
     } catch (err: any) {
@@ -52,7 +52,7 @@ export const register = (email: string, password: string): ThunkType => async di
 
 export const setPassword = (password: string, token: string): ThunkType => async dispatch => {
     try {
-        const response = await cardsAPI.setPassword(password, token);
+        await authAPI.setPassword(password, token);
 
     } catch (err: any) {
         console.log(err);

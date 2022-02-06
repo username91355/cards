@@ -15,7 +15,7 @@ export const Header: React.FC<IProps> = props => {
         <header className={s.header}>
             <nav className={s.header__container}>
                 <SuperNavLink to='/profile' children='Profile'/>
-                <SuperNavLink to='/cards' children='Cards'/>
+                <SuperNavLink to='/packs' children='Packs'/>
                 <SuperButton title={'Logout'}
                              type={'primary'}
                              sizeBtn={'small'}
