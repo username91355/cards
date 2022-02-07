@@ -6,9 +6,20 @@
 
 }
 
+.packs__search_input {
+    width: 100%;
+}
+
+.packs__list_section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .packs__list {
     border-radius: 1em;
     background-color: #7f83a8;
+    min-height: 480px;
 }
 
 .packs__list > *:nth-child(2n+1) {
@@ -18,4 +29,12 @@
 .packs__list > *:first-child {
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
+}
+
+@media screen and (max-width: 767px){
+    .packs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }

@@ -36,11 +36,17 @@ export const Pack: React.FC<IProps> = props => {
 
     return (
         <div className={s.pack}>
+            <div className={s.pack__info_toggle}>{name}</div>
             <div className={s.pack__info}>
                 <div>{name}</div>
                 <div>{cardsCount}</div>
                 <div>{dateExtract(updated)}</div>
                 <div>{user_name}</div>
+            </div>
+            <div className={s.pack__buttons_toggle}>
+                <SuperButton type={'primary'}
+                             title={'Open'}
+                             sizeBtn={'small'}/>
             </div>
             <div className={s.pack__buttons}>
                 <SuperButton type={'primary'}

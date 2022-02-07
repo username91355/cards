@@ -4,6 +4,10 @@
     flex-wrap: nowrap;
 }
 
+.pack__info_toggle {
+    display: none;
+}
+
 .pack__info {
     display: grid;
     grid-template-columns: 2fr 1fr 2fr 2fr;
@@ -12,15 +16,43 @@
     padding: 0 1em;
 }
 
-.pack__info > div{
+.pack__info_toggle {
     overflow-x: hidden;
 }
 
-.pack__info> div:nth-child(2){
+.pack__info > div {
+    overflow-x: hidden;
+}
+
+.pack__info > div:nth-child(2) {
     text-align: center;
+}
+
+.pack__buttons_toggle {
+    display: none;
 }
 
 .pack__buttons {
     display: flex;
     flex-wrap: nowrap;
+}
+
+@media screen and (max-width: 1440px) {
+    .pack__info {
+        display: none;
+    }
+
+    .pack__info_toggle {
+        display: flex;
+        align-items: center;
+        padding: 0 1em;
+    }
+
+    .pack__buttons {
+        display: none;
+    }
+
+    .pack__buttons_toggle {
+        display: block;
+    }
 }

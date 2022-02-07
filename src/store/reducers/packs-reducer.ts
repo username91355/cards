@@ -1,16 +1,24 @@
 import {ACTIONS} from '../actions';
-import {ICardsPackCreate, IPack, STATUS, TPacksState} from '../../utils/types/types';
+import {ICardsPackCreate, IFetchPacks, IPack, IPacksResponse, STATUS, TPacksState} from '../../utils/types/types';
 import {ThunkType} from '../store';
 import {packsAPI} from '../../api/packs-api';
 
 export const packsIState = {
-    packs: [] as IPack[],
+    cardPacks: [] as IPack[],
+    cardPacksTotalCount: 0 as number,
+    maxCardsCount: 100 as number,
+    minCardsCount: 0 as number,
+    page: 1 as number,
+    pageCount: 10 as number,
+    searchString: '' as string,
     status: STATUS.PENDING as STATUS
 }
 
 export const packsReducer = (state: TPacksState = packsIState, action: TPacksActions) => {
     switch (action.type) {
-        case ACTIONS.SET_PACKS_LIST:
+        case ACTIONS.SET_PACKS_DATA:
+        case ACTIONS.SET_CURRENT_PAGE:
+        case ACTIONS.SET_SEARCH_STRING:
         case ACTIONS.SET_PACKS_STATUS:
             return {
                 ...state,
@@ -21,16 +29,21 @@ export const packsReducer = (state: TPacksState = packsIState, action: TPacksAct
     }
 };
 
-const setPacks = (packs: IPack[]) => ({type: ACTIONS.SET_PACKS_LIST, payload: {packs}} as const);
+const setData = (data: IPacksResponse) => ({type: ACTIONS.SET_PACKS_DATA, payload: {...data}} as const);
+export const setSearchString = (searchString: string) => ({
+    type: ACTIONS.SET_SEARCH_STRING,
+    payload: {searchString}
+} as const);
+export const setCurrentPage = (page: number) => ({type: ACTIONS.SET_CURRENT_PAGE, payload: {page}} as const);
 const setPacksStatus = (status: STATUS) => ({type: ACTIONS.SET_PACKS_STATUS, payload: {status}} as const);
 
-export const fetchPacks = (): ThunkType => async dispatch => {
+export const fetchPacks = (cardsPack: IFetchPacks): ThunkType => async dispatch => {
     try {
         dispatch(setPacksStatus(STATUS.LOADING));
 
-        const response = await packsAPI.fetchPacks();
+        const response = await packsAPI.fetchPacks(cardsPack);
 
-        dispatch(setPacks(response.cardPacks));
+        dispatch(setData(response));
         dispatch(setPacksStatus(STATUS.SUCCESS));
     } catch (err) {
         console.log(err);
@@ -46,7 +59,6 @@ export const createPack = (name: string): ThunkType => async dispatch => {
 
         await packsAPI.createPack(cardsPack);
 
-        dispatch(fetchPacks());
     } catch (err) {
         console.log(err);
         dispatch(setPacksStatus(STATUS.ERROR));
@@ -59,31 +71,32 @@ export const deletePack = (id: string): ThunkType => async dispatch => {
 
         await packsAPI.deletePack(id);
 
-        dispatch(fetchPacks());
     } catch (err) {
         console.log(err);
         dispatch(setPacksStatus(STATUS.ERROR));
     }
 };
 
-export const editPack = (_id: string,name: string): ThunkType => async dispatch => {
+export const editPack = (_id: string, name: string): ThunkType => async dispatch => {
     try {
         dispatch(setPacksStatus(STATUS.LOADING));
 
-        const cardsPack = {_id, name}
+        const cardsPack = {_id, name};
 
         await packsAPI.updatePack(cardsPack);
 
-        dispatch(fetchPacks());
     } catch (err) {
         console.log(err);
         dispatch(setPacksStatus(STATUS.ERROR));
     }
 };
 
-
 export type TPacksActions =
     | TSetPacks
+    | TSetCurrentPage
+    | TSetSearchString
     | TSetPacksStatus;
-type TSetPacks = ReturnType<typeof setPacks>;
+type TSetPacks = ReturnType<typeof setData>;
+type TSetCurrentPage = ReturnType<typeof setCurrentPage>;
+type TSetSearchString = ReturnType<typeof setSearchString>;
 type TSetPacksStatus = ReturnType<typeof setPacksStatus>;

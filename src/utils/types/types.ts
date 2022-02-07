@@ -1,12 +1,14 @@
 import {loginIState} from '../../store/reducers/login-reducer';
 import {packsIState} from '../../store/reducers/packs-reducer';
 import {registerIState} from '../../store/reducers/register-reducer';
+import {profileIState} from '../../store/reducers/profile-reducer';
 
 //common types
 export type Nullable<T> = T | null;
 
-//api types
+//state types
 export type TLoginState = typeof loginIState;
+export type TProfileState = typeof profileIState;
 export type TRegisterState = typeof registerIState;
 export type TPacksState = typeof packsIState;
 
@@ -18,7 +20,7 @@ export enum STATUS {
     ERROR
 }
 
-//for api
+// api
 export interface IDefaultResponse {
     info: string
     error: string
@@ -41,7 +43,7 @@ export interface IUser {
     _id: string
 }
 
-
+//packs-api
 export interface IPacksResponse {
     cardPacks: IPack[],
     cardPacksTotalCount: number
@@ -81,4 +83,16 @@ export interface ICardsPackCreate {
     deckCover?: string,
     isPrivate?: boolean
     type?: string
+}
+
+//for fetch
+
+export interface IFetchPacks {
+    packName: string,
+    min: number
+    max: number
+    sortPacks: string
+    page: number
+    pageCount: number
+    user_id: string
 }

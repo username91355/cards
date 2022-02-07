@@ -2,6 +2,7 @@ import {IUser, Nullable, STATUS, TLoginState} from '../../utils/types/types';
 import {ThunkType} from '../store';
 import {ACTIONS} from '../actions';
 import { authAPI } from '../../api/auth-api';
+import {setUserData, TSetUserData} from './profile-reducer';
 
 export const loginIState = {
     isInit: false as boolean,
@@ -15,7 +16,6 @@ export const loginReducer = (state: TLoginState = loginIState, action: TLoginAct
     switch (action.type) {
         case ACTIONS.SET_LOGIN_ERROR:
         case ACTIONS.SET_AUTH_STATUS:
-        case ACTIONS.SET_USER_DATA:
             return {
                 ...state,
                 ...action.payload
@@ -25,7 +25,6 @@ export const loginReducer = (state: TLoginState = loginIState, action: TLoginAct
     }
 };
 
-const setUserData = (user: IUser | null) => ({type: ACTIONS.SET_USER_DATA, payload: {user}} as const);
 const setAuthStatus = (isAuth: boolean) => ({type: ACTIONS.SET_AUTH_STATUS, payload: {isAuth}} as const);
 const setInitStatus = (isInit: boolean) => ({type: ACTIONS.SET_AUTH_STATUS, payload: {isInit}} as const);
 const setLoginStatus = (loginStatus: STATUS) => ({type: ACTIONS.SET_LOGIN_STATUS, payload: {loginStatus}} as const);
@@ -54,7 +53,6 @@ export const logout = (): ThunkType => async dispatch => {
 
         if (response.info) {
             dispatch(setAuthStatus(false));
-            dispatch(setUserData(null));
             dispatch(setLoginStatus(STATUS.SUCCESS));
         }
     } catch (err: any) {
@@ -88,7 +86,6 @@ export type TLoginAction =
     | TSetInitStatus
     | TSetLoginStatus
     | TSetLoginError
-type TSetUserData = ReturnType<typeof setUserData>
 type TSetAuthStatus = ReturnType<typeof setAuthStatus>
 type TSetInitStatus = ReturnType<typeof setInitStatus>
 type TSetLoginStatus = ReturnType<typeof setLoginStatus>

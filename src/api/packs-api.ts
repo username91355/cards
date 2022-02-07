@@ -1,11 +1,14 @@
-import {ICardsPackCreate, ICardsPackUpdate, IPacksResponse} from '../utils/types/types';
+import {ICardsPackCreate, ICardsPackUpdate, IFetchPacks, IPacksResponse} from '../utils/types/types';
 import {instance} from './api';
 
 export const packsAPI = {
 
-    fetchPacks(): Promise<IPacksResponse> {
+    fetchPacks(cp: IFetchPacks): Promise<IPacksResponse> {
+        const url = `/cards/pack`;
+        const sortParams = `?packName=${cp.packName}&sortPacks=${cp.sortPacks}&user_id=${cp.user_id}`;
+        const requestParams = `&min=${cp.min}&max=${cp.max}&page=${cp.page}&pageCount=${cp.pageCount}`;
         return instance
-            .get<IPacksResponse>(`/cards/pack`)
+            .get<IPacksResponse>(url + sortParams + requestParams)
             .then(res => res.data)
             .catch(err => {
                 if (err.response) {
